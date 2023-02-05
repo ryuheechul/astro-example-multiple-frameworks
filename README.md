@@ -2,20 +2,26 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/github-tkuvgl)
 
+This code is based on https://astro.new/framework-multiple?on=github or https://github.com/withastro/astro/tree/latest/examples/framework-multiple
+
+But I made to few changes to prove some concepts:
+
+1. multiple framework components are nested to each other to see if that works
+2. add stro counter
+3. pass function from both astro to svelte and svelte to svelte
+
+regarding `3.`:
+
+- svelte to svelte works
+- but not astro to svelte [as the documentation already warned]
+
+And below is it's original readme at the time of "forking"
+
 ---
 
 # Kitchen Sink: Microfrontends with Astro
 
-This code is based on https://astro.new/framework-multiple?on=github
-
-But I made to few changes to proof of concept:
-
-1. multiple framework components are nested to each other to see if that works
-2. pass function from both astro to svelte and svelte to svelte
-3. add stro counter
-
-- svelte to svelte works
-- but not astro to svelte [as the documentation already warned](https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components)
+(https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components)
 
 ```
 npm create astro@latest -- --template framework-multiple
