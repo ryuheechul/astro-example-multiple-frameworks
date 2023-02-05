@@ -5,6 +5,7 @@ import '../styles/global.css';
 // Component Imports
 // For JSX components, all the common ways of exporting (under a namespace, specific export, default export etc) are supported!
 import Counter from '../components/Counter.astro'
+import ShadowCounter from '../components/ShadowCounter.astro'
 import * as react from '../components/ReactCounter';
 import { PreactCounter } from '../components/PreactCounter';
 import SolidCounter from '../components/SolidCounter';
@@ -17,53 +18,52 @@ import CounterWrapper from '../components/CounterWrapper.svelte';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	</head>
-	<body>
-		<main>
-			<Counter client:visible>
-				<h1>Hello from Astro!</h1>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <main>
 
-				<react.Counter client:visible>
-					<h1>Hello from React!</h1>
+      <Counter>
+        <h1>Hello from Astro!</h1>
 
-					<PreactCounter client:visible>
-						<h1>Hello from Preact!</h1>
-				
-						<SolidCounter client:visible>
-							<h1>Hello from Solid!</h1>
+        <ShadowCounter>
+          <h1>Hello from Astro via shadow DOM!</h1>
 
-							<VueCounter client:visible>
-								<h1>Hello from Vue!</h1>
+          <react.Counter client:visible>
+            <h1>Hello from React!</h1>
 
-								<SvelteCounter client:visible>
-									<h1>Svelte counter not passing function prop from astro</h1>
-								
-									<!-- https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components -->
-									<SvelteCounter client:visible handler={()=>alert("this doesn't work because it's coming from astro")}>
-										<h1>Svelte counter passing function prop from astro</h1>
+            <PreactCounter client:visible>
+              <h1>Hello from Preact!</h1>
 
-										<!-- but this one does - go to its code to see -->
-										<CounterWrapper client:visible />
+              <SolidCounter client:visible>
+                <h1>Hello from Solid!</h1>
 
-									</SvelteCounter>
-								
-								</SvelteCounter>
+                <VueCounter client:visible>
+                  <h1>Hello from Vue!</h1>
 
-							</VueCounter>
+                  <SvelteCounter client:visible>
+                    <h1>Svelte counter not passing function prop from astro</h1>
 
-						</SolidCounter>
-				
-					</PreactCounter>
+                    <!-- https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components -->
+                    <SvelteCounter client:visible handler={()=>alert("this doesn't work because it's coming from astro")}>
+                      <h1>Svelte counter passing function prop from astro</h1>
 
-				</react.Counter>
+                      <!-- but this one does - go to its code to see -->
+                      <CounterWrapper client:visible />
 
-			</Counter>
-		
-		</main>
-	</body>
+                    </SvelteCounter>
+                  </SvelteCounter>
+                </VueCounter>
+              </SolidCounter>
+            </PreactCounter>
+          </react.Counter>
+        </ShadowCounter>
+      </Counter>
+
+    </main>
+  </body>
 </html>

@@ -1,0 +1,56 @@
+<!--
+  this is a shadow DOM version of ./Counter.astro
+  I asked ChatGPT with:
+  Q: How do I avoid using id or class attribute to query element in this code below (./Counter.astro)? Can you suggest any alternative?
+  A: (with similar to this code) This way, you encapsulate the styles and structure of the custom element within the shadowRoot, which can only be accessed within the custom element. The use of the template element allows you to define the structure of the custom element once and reuse it as many times as needed.
+
+  and after ChatGPT's editing code I also polished it further to make existing css file to work with shadow doom - https://stackoverflow.com/a/37355195/1570165
+
+  more about shadow DOM - https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+-->
+
+<astro-shadow-counter /> <!-- be careful not to conflict with other shadow DOM from other files -->
+
+<div class="counter-message">
+  <slot />
+</div>
+
+<template id="astro-counter-template">
+  <link rel="stylesheet" href="/styles/counter.css" /> <!-- it's possible to reuse existing css but this comes with a cost of applying style after first page load -->
+  <div class="counter">
+    <button class="minus">-</button>
+    <pre class="show">0</pre>
+    <button class="plus">+</button>
+  </div>
+</template>
+
+<script>
+  class AstroCounter extends HTMLElement {
+    constructor() {
+      super();
+      let count = 0;
+
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(document.querySelector('#astro-counter-template').content.cloneNode(true));
+
+      const plusButton = shadowRoot.querySelector('.plus');
+      const minusButton = shadowRoot.querySelector('.minus');
+      const countSpan = shadowRoot.querySelector('.show');
+
+      const updateCount = () => {
+        countSpan.textContent = count;
+      };
+
+      plusButton.addEventListener('click', () => {
+        count++;
+        updateCount();
+      });
+      minusButton.addEventListener('click', () => {
+        count--;
+        updateCount();
+      });
+    }
+  }
+
+  customElements.define('astro-shadow-counter', AstroCounter);
+</script>
