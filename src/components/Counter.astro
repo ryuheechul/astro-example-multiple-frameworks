@@ -1,0 +1,49 @@
+
+<!-- astro itself is not great to create a component that can handle event in a isolated fashion so using web components can workaround this - https://docs.astro.build/en/guides/client-side-scripts/#web-components-with-custom-elements 
+
+much better than limitted by https://docs.astro.build/en/core-concepts/astro-components/#dynamic-attributes
+-->
+
+
+<!-- Wrap the component elements in our custom element “astro-heart”. -->
+<astro-internal-counter class="counter">
+	<button data-id="minus">-</button>
+	<pre data-id="show">0</pre>
+	<button data-id="plus">+</button>
+</astro-internal-counter>
+
+<div class="counter-message">
+  <slot />
+</div>
+
+<script>
+  // Define the behaviour for our new type of HTML element.
+  class AstroCounter extends HTMLElement {
+    constructor() {
+      super();
+      let count = 0;
+
+      const plusButton = this.querySelector('[data-id=plus]');
+      const minusButton = this.querySelector('[data-id=minus]');
+      
+      const countSpan = this.querySelector('[data-id=show]');
+
+      const updateCount = () => {
+        countSpan.textContent = count;
+      };
+
+      // Each time the button is clicked, update the count.
+      plusButton.addEventListener('click', () => {
+        count++;
+        updateCount();
+      });
+      minusButton.addEventListener('click', () => {
+        count--;
+        updateCount();
+      });
+    }
+  }
+
+  // Tell the browser to use our AstroHeart class for <astro-heart> elements.
+  customElements.define('astro-internal-counter', AstroCounter);
+</script>
