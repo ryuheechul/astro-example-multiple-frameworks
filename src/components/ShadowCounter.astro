@@ -8,15 +8,16 @@
 
   more about shadow DOM - https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 -->
-
-<astro-shadow-counter /> <!-- be careful not to conflict with other shadow DOM from other files -->
+<astro-shadow-counter></astro-shadow-counter>
+<!-- be careful not to conflict with other shadow DOM from other files -->
 
 <div class="counter-message">
   <slot />
 </div>
 
 <template id="astro-counter-template">
-  <link rel="stylesheet" href="/styles/counter.css" /> <!-- it's possible to reuse existing css but this comes with a cost of applying style after first page load -->
+  <link rel="stylesheet" href="/styles/counter.css" />
+  <!-- it's possible to reuse existing css but this comes with a cost of applying style after first page load -->
   <div class="counter">
     <button class="minus">-</button>
     <pre class="show">0</pre>
@@ -30,15 +31,17 @@
       super();
       let count = 0;
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.appendChild(document.querySelector('#astro-counter-template').content.cloneNode(true));
+      const shadowRoot = this.attachShadow({ mode: 'open' });
+      shadowRoot.appendChild(
+        document.querySelector('#astro-counter-template').content.cloneNode(true)
+      );
 
       const plusButton = shadowRoot.querySelector('.plus');
       const minusButton = shadowRoot.querySelector('.minus');
       const countSpan = shadowRoot.querySelector('.show');
 
       const updateCount = () => {
-        countSpan.textContent = count;
+        countSpan.textContent = count.toString();
       };
 
       plusButton.addEventListener('click', () => {
