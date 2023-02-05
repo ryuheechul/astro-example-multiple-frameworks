@@ -2,7 +2,8 @@
   this is a shadow DOM version of ./Counter.astro
   I asked ChatGPT with:
   Q: How do I avoid using id or class attribute to query element in this code below (./Counter.astro)? Can you suggest any alternative?
-  A: (with similar to this code) This way, you encapsulate the styles and structure of the custom element within the shadowRoot, which can only be accessed within the custom element. The use of the template element allows you to define the structure of the custom element once and reuse it as many times as needed.
+  A: You can avoid using the id or class attribute to query the elements by using shadowRoot and template instead. Here's an example: (with similar to this code)
+     This way, you encapsulate the styles and structure of the custom element within the shadowRoot, which can only be accessed within the custom element. The use of the template element allows you to define the structure of the custom element once and reuse it as many times as needed.
 
   and after ChatGPT's editing code I also polished it further to make existing css file to work with shadow doom - https://stackoverflow.com/a/37355195/1570165
 
