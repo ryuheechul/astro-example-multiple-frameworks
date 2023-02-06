@@ -10,6 +10,7 @@ import * as react from '../components/ReactCounter';
 import { PreactCounter } from '../components/PreactCounter';
 import SolidCounter from '../components/SolidCounter';
 import VueCounter from '../components/VueCounter.vue';
+import { LitCounter } from '../components/LitCounter';
 import SvelteCounter from '../components/SvelteCounter.svelte';
 import CounterWrapper from '../components/CounterWrapper.svelte';
 
@@ -44,20 +45,24 @@ import CounterWrapper from '../components/CounterWrapper.svelte';
                 <VueCounter client:visible>
                   <h1>Hello from Vue!</h1>
 
-                  <SvelteCounter client:visible>
-                    <h1>Svelte counter not passing function prop from astro</h1>
+                  <LitCounter client:visible>
+                    <h1>Hello from Lit!</h1>
 
-                    <!-- https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components -->
-                    <SvelteCounter
-                      client:visible
-                      handler={() => alert("this doesn't work because it's coming from astro")}
-                    >
-                      <h1>Svelte counter passing function prop from astro</h1>
+                    <SvelteCounter client:visible>
+                      <h1>Svelte counter not passing function prop from astro</h1>
 
-                      <!-- but this one does - go to its code to see -->
-                      <CounterWrapper client:visible />
+                      <!-- https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components -->
+                      <SvelteCounter
+                        client:visible
+                        handler={() => alert("this doesn't work because it's coming from astro")}
+                      >
+                        <h1>Svelte counter passing function prop from astro</h1>
+
+                        <!-- but this one does - go to its code to see -->
+                        <CounterWrapper client:visible />
+                      </SvelteCounter>
                     </SvelteCounter>
-                  </SvelteCounter>
+                  </LitCounter>
                 </VueCounter>
               </SolidCounter>
             </PreactCounter>

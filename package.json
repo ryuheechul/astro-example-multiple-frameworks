@@ -13,12 +13,15 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@astrojs/lit": "^1.1.2",
     "@astrojs/preact": "^2.0.2",
     "@astrojs/react": "^2.0.2",
     "@astrojs/solid-js": "^2.0.2",
     "@astrojs/svelte": "^2.0.1",
     "@astrojs/vue": "^2.0.1",
+    "@webcomponents/template-shadowroot": "^0.1.0",
     "astro": "^2.0.6",
+    "lit": "^2.6.1",
     "preact": "^10.7.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

@@ -7,11 +7,12 @@ This code is based on https://astro.new/framework-multiple?on=github or https://
 But I made to few changes to prove some concepts:
 
 1. multiple framework components are nested to each other to see if that works
-2. add stro counter
-3. pass function from both astro to svelte and svelte to svelte
+2. add Astro counter
+3. add Lit counter
+4. add prettier and eslint
+5. pass function from both Astro to Svelte and Svelte to Svelte
 
-regarding `3.`:
-
+Regarding `5.`:
 - svelte to svelte works
 - but not astro to svelte [as the documentation already warned]
 
